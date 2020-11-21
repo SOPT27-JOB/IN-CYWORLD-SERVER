@@ -14,14 +14,14 @@ if (config.use_env_variable) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// db.User = require('./user')(sequelize, Sequelize);
-// db.Result = require('./result')(sequelize, Sequelize);
-// db.UserResult = require('./user_result')(sequelize, Sequelize);
+db.User = require('./user')(sequelize, Sequelize);
+db.Result = require('./result')(sequelize, Sequelize);
+db.UserResult = require('./user_result')(sequelize, Sequelize);
 
-// db.User.hasMany(db.Result, {onDelete:'cascade'});
-// db.Result.belongsTo(db.User);
+db.User.hasMany(db.Result, {onDelete:'cascade'});
+db.Result.belongsTo(db.User);
 
-// db.User.belongsToMany(db.Result, {through:'UserResult', as: 'tested'});
-// db.Result.belongsToMany(db.User, {through:'UserResult', as:'tester'});
+db.User.belongsToMany(db.Result, {through:'UserResult', as: 'tested'});
+db.Result.belongsToMany(db.User, {through:'UserResult', as:'tester'});
 
 module.exports = db;
