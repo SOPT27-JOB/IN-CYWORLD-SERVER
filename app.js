@@ -3,6 +3,15 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const {sequelize} = require('./models');
+
+sequelize.sync({alter:false})
+  .then(()=>{
+    console.log('DB 연결 성공');
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 const indexRouter = require('./routes/index');
 
