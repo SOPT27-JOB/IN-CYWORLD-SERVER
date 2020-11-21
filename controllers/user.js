@@ -42,6 +42,12 @@ const user = {
     }
   },
 
+  /**
+   * 상위 퍼센티지 조회
+   * @summary 상위 퍼센티지 조회
+   * @param birthYear, score
+   * @return 실제점수, 상위 퍼센티지
+   */
   getScoreRate: async (req, res) => {
     try {
       if(req.user == undefined){

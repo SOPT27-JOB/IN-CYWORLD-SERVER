@@ -3,6 +3,12 @@ const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const { Result } = require('../models');
 const result = {
+  /**
+   * 레벨정보 조회
+   * @summary 레벨정보 조회
+   * @param 레벨 번호
+   * @return 해당 레벨의 정보
+   */
   getResult: async (req, res) => {
     const levelNum = req.params.levelNum;
     if(levelNum == undefined){
