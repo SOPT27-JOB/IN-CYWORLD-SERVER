@@ -3,9 +3,14 @@
 
 ![KakaoTalk_20201122_010300152_01](https://user-images.githubusercontent.com/37949197/99885070-c1412580-2c75-11eb-8ec8-4214faab2acf.png)
 
+
 <br>
+
 - <b> SOPT 27th 솝커톤
-- 프로젝트 기간: 2020.11.21 ~ 22  <br>
+- 프로젝트 기간: 2020.11.21 ~ 22  
+	
+
+<br>
 
 
   
