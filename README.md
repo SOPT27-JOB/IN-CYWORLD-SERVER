@@ -15,7 +15,11 @@
 ## ✔ **models/index.js**
 
 ```jsx
+db.User = require("./user")(sequelize, Sequelize);
+db.Result = require("./result")(sequelize, Sequelize);
 
+db.User.belongsTo(db.Result);
+db.Result.hasMany(db.User, { onDelete: "cascade" });
 ```
 
 ## **📙 DB ERD**
