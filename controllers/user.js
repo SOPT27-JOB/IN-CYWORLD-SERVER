@@ -2,40 +2,54 @@
 const resMessage = require("../modules/responseMessage");
 const statusCode = require("../modules/statusCode");
 const util = require("../modules/util");
-const calculateStep = require("../modules/calculateStep");
-const {User, UserResult} = require('../models');
+const calculateScore = require("../modules/calculateScore");
+const getResultId = require("../modules/getResultId");
+const {User, Result} = require('../models');
 
 const user = {
   /**
    * 점수값을 계산해 user row 생성
    * @summary user 생성
-   * @param name, part
+   * @param name, birthYear, answers
    * @return 새로 생성된 user
   */
-  createUser: async (req, res) => {
-    // TODO : 유저정보 변동 가능.
-    const {name,part,answers} = req.body;
-    if(name === undefined || part === undefined || answers === undefined){
+  createUser: async (req, res, next) => {
+    const {birthYear,answers} = req.body;
+    if(birthYear === undefined || answers === undefined){
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
     }
-    const step = calculateStep(answers);
+    
+    const score = calculateScore(answers);
+    const resultId = getResultId(score);
+    
     try{
+      const result = await Result.findOne({where:{id:resultId}});
       const newUser = await User.create({
-        name:name,
-        part:part,
+        birthYear:birthYear,
+        score:score
       });
 
-      console.log(newUser.id);console.log(newUser.id);console.log(newUser.id);
+      await result.addUser(newUser);
+      
+      req.user = newUser;
+      
+      next();
 
-      return res.status(statusCode.OK)
-        .send(util.success(statusCode.CREATED, resMessage.SUCCESS, newUser));
     } catch(err){
       console.log(err);
-      throw err;
+      return res.status(statusCode.INTERNAL_SERVER_ERROR)
+        .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
     }
     
   },
+
+  merong:(req,res)=>{
+    console.log(req.user);
+    return res.status(statusCode.OK)
+      .send(util.success(statusCode.OK, resMessage.SUCCESS, req.user));
+  },
+
   /**
    * QNA게시판 내 QNA 상세조회
    * @summary QNA게시판 특정 idx 상세조회
