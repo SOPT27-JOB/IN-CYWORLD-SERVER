@@ -5,10 +5,7 @@
 
 
 - <b> SOPT 27th 솝커톤
-- 프로젝트 기간: 2020.11.21 ~ 22  
-
-
-
+- 프로젝트 기간: 2020.11.21 ~ 22  <br>
 
   
 ## **💁 프로젝트 설명**
@@ -21,14 +18,14 @@ Z세대들, 그대들은 90년대생에 대해 얼마나 알고 있는가?!
 지금 당장 인-싸이월드 테스트로 그대의 세대 감수성을 시험하라
 
 
-
+<br>
 
 ## **📑 API 명세서**
 
 - **[API 명세서 ](https://github.com/SOPT27-JOB/JOB-SERVER/wiki/Cyworld-Server)**  
 
 
-
+<br>
   
 ## ✔ **models/index.js**
 
@@ -40,7 +37,7 @@ db.User.belongsTo(db.Result);
 db.Result.hasMany(db.User, { onDelete: "cascade" });
 ```
 
-
+<br>
 
 ## **📙 DB ERD**
 
@@ -49,7 +46,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 
 
-
+<br>
 
 ## **🏃‍♂️ 기능 소개**
 
@@ -58,7 +55,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 -
 
 
-
+<br>
 
 ## **🌎 Team Role**
 
@@ -77,7 +74,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 - user 점수 알고리즘 구현
 
 
-
+<br>
 
 ## **📘 Package**
 
