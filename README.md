@@ -1,6 +1,6 @@
-# **27th 솝커톤**
+<h1> </h1>
 
-- <b> SOPT 27th APPJAM
+- <b> SOPT 27th 솝커톤
 - 프로젝트 기간: 2020.11.21 ~ 22
 - [API 문서](https://github.com/SOPT27-JOB/JOB-SERVER/wiki/Cyworld-Server)</b>
 
@@ -12,15 +12,21 @@
 
 - **API 명세서 링크**
 
-## **📙 DB ERD**
-
-![https://user-images.githubusercontent.com/37949197/87675200-03cb9080-c7b2-11ea-86eb-7e6e9cc599c3.png](https://user-images.githubusercontent.com/37949197/87675200-03cb9080-c7b2-11ea-86eb-7e6e9cc599c3.png)
-
 ## ✔ **models/index.js**
 
 ```jsx
 
 ```
+
+## **📙 DB ERD**
+
+![https://user-images.githubusercontent.com/37949197/87675200-03cb9080-c7b2-11ea-86eb-7e6e9cc599c3.png](https://user-images.githubusercontent.com/37949197/87675200-03cb9080-c7b2-11ea-86eb-7e6e9cc599c3.png)
+
+## ** 🏃‍♂️ 기능 소개 **
+
+-
+-
+-
 
 ## **🌎 Team Role**
 
@@ -35,8 +41,6 @@
 ## **📘 Package**
 
 사용 패키지(모듈)은 다음과 같습니다.
-
-- **nodemailer** -
 
 ```
 "dependencies": {
