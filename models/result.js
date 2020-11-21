@@ -11,10 +11,15 @@ const Result = (sequelize, DataTypes) => {
         type:DataTypes.STRING(100),
         allowNull: false,
       },
-      text: {
+      title:{
+        type: DataTypes.STRING(100),
+        allowNull:false,
+      },
+      guide: {
         type: DataTypes.TEXT(),
         allowNull: false,
-      },
+      }
+
     },
     {
       //모델의 옵션들을 지정하는곳
