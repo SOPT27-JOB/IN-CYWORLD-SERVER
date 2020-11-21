@@ -1,11 +1,11 @@
 module.exports = (score) => {
   if(score > 7){
-    return 10;
+    return 4;
   } else if(score > 4){
-    return 9;
+    return 3;
   } else if(score > 2){
-    return 8;
+    return 2;
   } else{
-    return 7;
+    return 1;
   }
 }

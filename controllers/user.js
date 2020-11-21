@@ -25,6 +25,7 @@ const user = {
 
     try {
       const result = await Result.findOne({ where: { id: resultId } });
+
       const newUser = await User.create({
         birthYear: birthYear,
         score: score,
@@ -43,18 +44,19 @@ const user = {
 
   getResult: async (req, res) => {
     const levelNum = req.params.levelNum;
+    console.log(`levelnum : ${levelNum}`);
     try {
       // step이 몇번인지 알아낸 이후에,
       const results = await Result.findOne({
         where: {
           id: levelNum,
-        },
+        }
       });
-
+      console.log(results);
       return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, results));
     } catch (err) {
       console.log(err);
-      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.CREATE_POST_FAIL));
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
     }
   },
 
@@ -76,8 +78,8 @@ const user = {
           score: { [Op.gte]: req.user.score },
         },
       });
-      // console.log(userScoreCount.dataValues.count);
-      // console.log(sameBirthCount.dataValues.count);
+      console.log(userScoreCount.dataValues.count);
+      console.log(sameBirthCount.dataValues.count);
 
       const scoreRate = Math.round((userScoreCount.dataValues.count / sameBirthCount.dataValues.count) * 100);
       return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, scoreRate));
