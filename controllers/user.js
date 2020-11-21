@@ -37,14 +37,13 @@ const user = {
 
       next();
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
     }
   },
 
   getResult: async (req, res) => {
     const levelNum = req.params.levelNum;
-    console.log(`levelnum : ${levelNum}`);
     try {
       // step이 몇번인지 알아낸 이후에,
       const results = await Result.findOne({
@@ -52,10 +51,9 @@ const user = {
           id: levelNum,
         }
       });
-      console.log(results);
       return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, results));
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
     }
   },
@@ -78,13 +76,11 @@ const user = {
           score: { [Op.gte]: req.user.score },
         },
       });
-      console.log(userScoreCount.dataValues.count);
-      console.log(sameBirthCount.dataValues.count);
 
       const scoreRate = Math.round((userScoreCount.dataValues.count / sameBirthCount.dataValues.count) * 100);
       return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, scoreRate));
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
     }
   },
