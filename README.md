@@ -25,7 +25,7 @@ db.User.belongsTo(db.Result);
 db.Result.hasMany(db.User, { onDelete: "cascade" });
 ```
 
-<br />
+***
 
 ## **📙 DB ERD**
 
@@ -33,14 +33,15 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 ![Snipaste_2020-11-22_03-46-48](https://user-images.githubusercontent.com/37949197/99885098-e3d33e80-2c75-11eb-909c-8ae1a3db6caa.png)
 
 
-<br />
+***
+
 ## **🏃‍♂️ 기능 소개**
 
 -
 -
 -
 
-<br />
+***
 ## **🌎 Team Role**
 
 ### **🙋‍♀️ 김민지**
@@ -57,6 +58,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 - user 정보 DB 저장
 - user 점수 알고리즘 구현
 
+***
 ## **📘 Package**
 
 사용 패키지(모듈)은 다음과 같습니다.
