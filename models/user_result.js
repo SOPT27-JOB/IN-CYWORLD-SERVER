@@ -1,22 +1,22 @@
-const { User, Result } = require('../models');
+const { User, Result } = require("../models");
 
 const UserResult = (sequelize, DataTypes) => {
   return sequelize.define(
-    'UserResult',
+    "UserResult",
     {
       //모델의 Attributes (Column)을 정의하는곳
       ResultId: {
         type: DataTypes.INTEGER,
         reference: {
           model: Result,
-          key: 'id',
+          key: "id",
         },
       },
       UserId: {
         type: DataTypes.INTEGER,
         reference: {
           model: User,
-          key: 'id',
+          key: "id",
         },
       },
     },
