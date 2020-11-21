@@ -5,12 +5,12 @@
 
 
 - <b> SOPT 27th 솝커톤
-- 프로젝트 기간: 2020.11.21 ~ 22
+- 프로젝트 기간: 2020.11.21 ~ 22  
 
 
 
 
-
+  
 ## **💁 프로젝트 설명**
 
 - 코로나보다 무서운 Z세대 밈에 중독된 2020년...
@@ -23,15 +23,15 @@ Z세대들, 그대들은 90년대생에 대해 얼마나 알고 있는가?!
 
 
 
-
+  
 ## **📑 API 명세서**
 
-- **[API 명세서 ](https://github.com/SOPT27-JOB/JOB-SERVER/wiki/Cyworld-Server)**
+- **[API 명세서 ](https://github.com/SOPT27-JOB/JOB-SERVER/wiki/Cyworld-Server)**  
 
 
 
 
-
+  
 ## ✔ **models/index.js**
 
 ```jsx
@@ -45,7 +45,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 
 
-
+  
 ## **📙 DB ERD**
 
 
@@ -54,7 +54,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 
 
-
+  
 ## **🏃‍♂️ 기능 소개**
 
 -
@@ -64,7 +64,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 
 
-
+  
 ## **🌎 Team Role**
 
 ### **🙋‍♀️ 김민지**
@@ -84,34 +84,36 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 
 
-
+  
 ## **📘 Package**
 
 사용 패키지(모듈)은 다음과 같습니다.
 
 ```
 "dependencies": {
-    "aws-sdk": "^2.709.0",
-    "body-parser": "^1.19.0",
-    "connect": "^3.7.0",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.27.0",
-    "mongoose": "^5.9.21",
-    "mongoose-moment": "^0.1.3",
-    "morgan": "~1.9.1",
-    "multer": "^1.4.2",
-    "multer-s3": "^2.9.0",
-    "nodemailer": "^6.4.10",
-    "nodemailer-smtp-transport": "^2.7.4",
-    "pbkdf2": "^3.1.1",
-    "qrcode": "^1.4.4",
-    "qrcode-with-logos": "^1.0.2",
-    "rand-token": "^1.0.1",
-    "socket.io": "^2.3.0"
-  }
+		"aws-sdk": "^2.753.0",
+		"axios": "^0.21.0",
+		"cookie-parser": "~1.4.5",
+		"debug": "~4.1.1",
+		"ejs": "^3.1.5",
+		"express": "~4.17.1",
+		"firebase-admin": "^9.2.0",
+		"googleapis": "^59.0.0",
+		"hangul-js": "^0.2.6",
+		"http-errors": "~1.8.0",
+		"jade": "~1.11.0",
+		"jsonwebtoken": "^8.5.1",
+		"moment": "^2.28.0",
+		"morgan": "~1.10.0",
+		"multer": "^1.4.2",
+		"multer-s3": "^2.9.0",
+		"nodemailer": "^6.4.11",
+		"promise-mysql": "^4.1.3",
+		"rand-token": "^1.0.1",
+		"request": "^2.88.2",
+		"socket.io": "2.3.0",
+		"unique-names-generator": "^4.3.1",
+		"winston": "^3.3.3",
+		"winston-daily-rotate-file": "^4.5.0"
+	}
 ```
