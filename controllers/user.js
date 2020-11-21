@@ -9,9 +9,9 @@ const { User, Result } = require('../models');
 
 const user = {
   /**
-   * 점수값을 계산해 user row 생성
+   * 점수 채점 후 user 생성
    * @summary user 생성
-   * @param name, birthYear, answers
+   * @param birthYear, answers
    * @return 새로 생성된 user
    */
   createUser: async (req, res, next) => {
@@ -20,8 +20,8 @@ const user = {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
     }
 
-    const score = calculateScore(answers);
-    const resultId = getResultId(score);
+    const score = calculateScore(answers); // 점수 채점 후
+    const resultId = getResultId(score); // 어느 결과그룹에 속하는지 조회
 
     try {
       const result = await Result.findOne({ where: { id: resultId } });
@@ -33,9 +33,9 @@ const user = {
 
       await result.addUser(newUser);
 
-      req.user = newUser;
+      req.user = newUser; // user값을 넘겨준 후
+      next(); // 다음 컨트롤러 호출
 
-      next();
     } catch (err) {
       console.error(err);
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
@@ -47,6 +47,7 @@ const user = {
       if(req.user == undefined){
         return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
       }
+      
       // 생년월일 같은 사람들 몇명있는지
       const sameBirthCount = await User.findOne({
         attributes: [[fn('COUNT', '*'), 'count']],
