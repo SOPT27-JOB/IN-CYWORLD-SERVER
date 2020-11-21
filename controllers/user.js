@@ -44,6 +44,9 @@ const user = {
 
   getScoreRate: async (req, res) => {
     try {
+      if(req.user == undefined){
+        return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+      }
       // 생년월일 같은 사람들 몇명있는지
       const sameBirthCount = await User.findOne({
         attributes: [[fn('COUNT', '*'), 'count']],

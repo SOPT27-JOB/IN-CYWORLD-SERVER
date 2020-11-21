@@ -5,6 +5,9 @@ const { Result } = require('../models');
 const result = {
   getResult: async (req, res) => {
     const levelNum = req.params.levelNum;
+    if(levelNum == undefined){
+      return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+    }
     try {
       // step이 몇번인지 알아낸 이후에,
       const results = await Result.findOne({
