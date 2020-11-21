@@ -1,9 +1,10 @@
 // const userModel = require('../models/user');
-const { Op } = require('sequelize');
+const {sequelize, Op, fn} = require('sequelize');
 const resMessage = require('../modules/responseMessage');
 const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const calculateScore = require('../modules/calculateScore');
+const getResultId = require('../modules/getResultId');
 const { User, Result } = require('../models');
 
 const user = {
@@ -53,7 +54,7 @@ const user = {
       return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, results));
     } catch (err) {
       console.log(err);
-      return res.status(sc.INTERNAL_SERVER_ERROR).send(ut.fail(sc.INTERNAL_SERVER_ERROR, rm.CREATE_POST_FAIL));
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.CREATE_POST_FAIL));
     }
   },
 
@@ -61,25 +62,28 @@ const user = {
     try {
       // 생년월일 같은 사람들 몇명있는지
       const sameBirthCount = await User.findOne({
-        attributes: [[sequelize.fn('COUNT', '*'), 'count']],
+        attributes: [[fn('COUNT', '*'), 'count']],
         where: {
           birthYear: req.user.birthYear,
         },
       });
+      
 
       // 해당 사용자 점수 이상인 사람 수 조회
       const userScoreCount = await User.findOne({
-        attributes: [[sequelize.fn('COUNT', '*'), 'count']],
+        attributes: [[fn('COUNT', '*'), 'count']],
         where: {
-          score: { [Op.gte]: req.user.userScore },
+          score: { [Op.gte]: req.user.score },
         },
       });
+      // console.log(userScoreCount.dataValues.count);
+      // console.log(sameBirthCount.dataValues.count);
 
-      const scoreRate = (userScoreCount / sameBirthCount) * 100;
+      const scoreRate = Math.round((userScoreCount.dataValues.count / sameBirthCount.dataValues.count) * 100);
       return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, scoreRate));
     } catch (err) {
       console.log(err);
-      return res.status(sc.INTERNAL_SERVER_ERROR).send(ut.fail(sc.INTERNAL_SERVER_ERROR, rm.CREATE_POST_FAIL));
+      return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
     }
   },
 };
