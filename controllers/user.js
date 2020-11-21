@@ -1,4 +1,4 @@
-const userModel = require('../models/user');
+// const userModel = require('../models/user');
 const resMessage = require('../modules/responseMessage');
 const statusCode = require("../modules/statusCode");
 const util = require('../modules/util');
