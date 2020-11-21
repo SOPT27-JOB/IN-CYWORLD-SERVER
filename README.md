@@ -9,7 +9,7 @@
 
 
 
-#
+
   
 ## **💁 프로젝트 설명**
 
@@ -22,14 +22,12 @@ Z세대들, 그대들은 90년대생에 대해 얼마나 알고 있는가?!
 
 
 
-#
-  
+
 ## **📑 API 명세서**
 
 - **[API 명세서 ](https://github.com/SOPT27-JOB/JOB-SERVER/wiki/Cyworld-Server)**  
 
 
-#
 
   
 ## ✔ **models/index.js**
@@ -43,18 +41,16 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 ```
 
 
-#
 
-  
 ## **📙 DB ERD**
 
 
 ![Snipaste_2020-11-22_03-46-48](https://user-images.githubusercontent.com/37949197/99885098-e3d33e80-2c75-11eb-909c-8ae1a3db6caa.png)
 
-#
 
 
-  
+
+
 ## **🏃‍♂️ 기능 소개**
 
 -
@@ -63,8 +59,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 
 
-#
-  
+
 ## **🌎 Team Role**
 
 ### **🙋‍♀️ 김민지**
@@ -83,8 +78,7 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 
 
-#
-  
+
 ## **📘 Package**
 
 사용 패키지(모듈)은 다음과 같습니다.
