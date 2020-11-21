@@ -7,19 +7,19 @@ const Result = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: true,
       },
-      text: {
-        type: DataTypes.TEXT(),
+      videoUrl:{
+        type:DataTypes.STRING(100),
         allowNull: false,
       },
-      step: {
-        type: DataTypes.INTEGER,
+      text: {
+        type: DataTypes.TEXT(),
         allowNull: false,
       },
     },
     {
       //모델의 옵션들을 지정하는곳
       freezeTableName: true,
-      timestamps: true,
+      timestamps: false,
     }
   );
 };
