@@ -2,7 +2,6 @@
 
 - <b> SOPT 27th 솝커톤
 - 프로젝트 기간: 2020.11.21 ~ 22
-- [API 문서](https://github.com/SOPT27-JOB/JOB-SERVER/wiki/Cyworld-Server)</b>
 
 ## **💁 프로젝트 설명**
 
@@ -36,11 +35,17 @@ db.Result.hasMany(db.User, { onDelete: "cascade" });
 
 ### **🙋‍♀️ 김민지**
 
-- 
+- ERD 설계
+- level별 result 조회
+- user 상위 % 알고리즘 구현
+- 배포
 
 ### **🙋‍♂️ 강준우**
 
-- 
+- ERD 설계
+- 프로젝트 구조 setting
+- user 정보 DB 저장
+- user 점수 알고리즘 구현
 
 ## **📘 Package**
 
