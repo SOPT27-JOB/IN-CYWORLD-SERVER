@@ -10,7 +10,7 @@
 
 ## **📑 API 명세서**
 
-- **API 명세서 링크**
+- **[API 명세서 ](https://github.com/SOPT27-JOB/JOB-SERVER/wiki/Cyworld-Server)**
 
 ## ✔ **models/index.js**
 
