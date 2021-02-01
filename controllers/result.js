@@ -11,22 +11,27 @@ const result = {
    */
   getResult: async (req, res) => {
     const levelNum = req.params.levelNum;
-    if(levelNum == undefined){
+    if (levelNum == undefined) {
       return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
     }
     try {
-      // step이 몇번인지 알아낸 이후에,
-      const results = await Result.findOne({
-        where: {
-          id: levelNum,
-        }
-      });
-      return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, results));
+      if (levelNum > 0 && levelNum <= 4) {
+        // step이 몇번인지 알아낸 이후에,
+        const results = await Result.findOne({
+          where: {
+            id: levelNum,
+          },
+        });
+
+        return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, results));
+      } else {
+        return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.INVALID_VALUE, resMessage.INVALID_VALUE));
+      }
     } catch (err) {
       console.error(err);
       return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, resMessage.DB_ERROR));
     }
-  }
+  },
 };
 
 module.exports = result;
