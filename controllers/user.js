@@ -4,7 +4,7 @@ const resMessage = require('../modules/responseMessage');
 const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const calculateScore = require('../modules/calculateScore');
-const getResultId = require('../modules/getResultId');
+const getLevelNum = require('../modules/getLevelNum');
 const { User, Result } = require('../models');
 
 const user = {
@@ -21,10 +21,10 @@ const user = {
     }
 
     const score = calculateScore(answers); // 점수 채점 후
-    const resultId = getResultId(score); // 어느 결과그룹에 속하는지 조회
+    const levelNum = getLevelNum(score); // 어느 결과그룹에 속하는지 조회
 
     try {
-      const result = await Result.findOne({ where: { id: resultId } });
+      const result = await Result.findOne({ where: { id: levelNum } });
 
       const newUser = await User.create({
         birthYear: birthYear,
@@ -34,6 +34,7 @@ const user = {
       await result.addUser(newUser);
 
       req.user = newUser; // user값을 넘겨준 후
+      req.levelNum = levelNum;
       next(); // 다음 컨트롤러 호출
 
     } catch (err) {
@@ -45,7 +46,7 @@ const user = {
   /**
    * 상위 퍼센티지 조회
    * @summary 상위 퍼센티지 조회
-   * @param birthYear, score
+   * @param birthYear, score, levelNum
    * @return 실제점수, 상위 퍼센티지
    */
   getScoreRate: async (req, res) => {
@@ -74,7 +75,8 @@ const user = {
       const scoreRate = Math.round((userScoreCount.dataValues.count / sameBirthCount.dataValues.count) * 100);
       const data = {
         'score' : req.user.score * 10, // 100점 만점이므로 10 곱해서 리턴.
-        'scoreRate' : scoreRate
+        'scoreRate' : scoreRate,
+        'levelNum' : req.levelNum
       }
       return res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SUCCESS, data));
     } catch (err) {
