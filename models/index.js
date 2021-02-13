@@ -21,6 +21,7 @@ db.Sequelize = Sequelize;
 
 db.User = require("./user")(sequelize, Sequelize);
 db.Result = require("./result")(sequelize, Sequelize);
+db.Log = require("./log")(sequelize, Sequelize);
 
 db.User.belongsTo(db.Result);
 db.Result.hasMany(db.User, { onDelete: "cascade" });
