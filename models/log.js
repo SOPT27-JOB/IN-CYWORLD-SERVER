@@ -1,3 +1,4 @@
+// 아직 안쓰임!!
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('Log', {
     type: {

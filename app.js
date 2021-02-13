@@ -52,7 +52,7 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-daily.sendTrafficEmail();
-//schedule.scheduleJob('00 58 23 * * *', daily.sendTrafficEmail);
+// daily.sendTrafficEmail();
+schedule.scheduleJob('00 58 23 * * *', daily.sendTrafficEmail);
 
 module.exports = app;

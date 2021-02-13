@@ -1,46 +1,55 @@
 const moment = require('moment');
 const Op = require('sequelize').Op;
-const {Log} = require('../models');
+const {User} = require('../models');
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
-const gmail = require('../config/gmail');
+const email = require('../config/email');
 
 module.exports = {
   sendTrafficEmail:async()=>{
-    const landingPageToday = await Log.count({
+    const resultPageToday = await User.count({
       where:{
-        type:0,
         createdAt:{
           [Op.gt]: moment().format('YYYY-MM-DD 00:00'),
           [Op.lt]: moment().format('YYYY-MM-DD 23:59')
         }
       }
     });
-    const resultPageToday = await Log.count({
-      where:{
-        type:1,
-        createdAt:{
-          [Op.gt]: moment().format('YYYY-MM-DD 00:00'),
-          [Op.lt]: moment().format('YYYY-MM-DD 23:59')
-        }
-      }
-    });
-    const landingPageTotal = await Log.count({
-      where:{
-        type:0
-      }
-    });
-    const resultPageTotal = await Log.count({
-      where:{
-        type:1
-      }
-    });
+    const resultPageTotal = await User.count({});
+
+
+    // const landingPageToday = await Log.count({
+    //   where:{
+    //     type:0,
+    //     createdAt:{
+    //       [Op.gt]: moment().format('YYYY-MM-DD 00:00'),
+    //       [Op.lt]: moment().format('YYYY-MM-DD 23:59')
+    //     }
+    //   }
+    // });
+    // const resultPageToday = await Log.count({
+    //   where:{
+    //     type:1,
+    //     createdAt:{
+    //       [Op.gt]: moment().format('YYYY-MM-DD 00:00'),
+    //       [Op.lt]: moment().format('YYYY-MM-DD 23:59')
+    //     }
+    //   }
+    // });
+    // const landingPageTotal = await Log.count({
+    //   where:{
+    //     type:0
+    //   }
+    // });
+    // const resultPageTotal = await Log.count({
+    //   where:{
+    //     type:1
+    //   }
+    // });
     
     let emailTemplate;
     ejs.renderFile('./views/mail.ejs',{
-      landingPageToday,
       resultPageToday,
-      landingPageTotal,
       resultPageTotal
     }, (err, data)=>{
       if(err) console.error(err);
@@ -50,14 +59,14 @@ module.exports = {
     let transporter = nodemailer.createTransport({
       service:'gmail',
       auth:{
-        user:gmail.id,
-        pass:gmail.pw
+        user:email.from.id,
+        pass:email.from.pw
       }
     });
 
     let mailOptions = {
-      from:gmail.id,
-      to:'brianjune@naver.com',
+      from:email.from.id,
+      to:email.to,
       subject: `[인싸월] ${moment().format('YYYY-MM-DD')} 트래픽 알림 😎`,
       html:emailTemplate
     };
@@ -69,6 +78,5 @@ module.exports = {
     } catch(err){
       console.error(err);
     }
-    //sendSlackMessage(`*** ${moment().format('YYYY-MM-DD')} 트래픽 👻 ***\n - main : ${mainAccess} (누적 ${mainAccessTotal})\n - test : ${testAccess} (누적 ${testAccessTotal})`);
   }
 }
